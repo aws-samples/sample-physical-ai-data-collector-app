@@ -17,7 +17,7 @@ const inviteStack = new PAIInviteStack(app, 'PAIInviteStack', {
   env: { region },
   appUserPoolId:  dataStack.userPoolId,
   appUserPoolArn: dataStack.userPoolArn,
-  sesFromEmail:   'byochong@amazon.com',
+  sesFromEmail:   app.node.tryGetContext('sesFromEmail') ?? 'noreply@example.com',
 });
 
 new PAIAdminStack(app, 'PAIAdminStack', {

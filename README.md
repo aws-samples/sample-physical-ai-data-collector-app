@@ -160,23 +160,23 @@ npm install
 npx cdk bootstrap aws://ACCOUNT_ID/ap-northeast-2
 
 # Deploy all stacks (dev mode = default)
-npx cdk deploy --all
+npx cdk deploy --all --context sesFromEmail=noreply@yourdomain.com
 
 # Or deploy individually
 npx cdk deploy PAIDataStack
-npx cdk deploy PAIInviteStack
+npx cdk deploy PAIInviteStack --context sesFromEmail=noreply@yourdomain.com
 npx cdk deploy PAIAdminStack
 ```
 
 Example CDK output:
 ```
-PAIDataStack.BucketName       = pai-raw-data-428925521485
-PAIDataStack.UserPoolId       = ap-northeast-2_MLxeZLXyY
-PAIDataStack.UserPoolClientId = 64d10g6v0d1au6dho0vli0108e
-PAIDataStack.IdentityPoolId   = ap-northeast-2:82d41af6-be83-420a-ab89-49eafcc66dd4
-PAIAdminStack.AdminConsoleURL = https://d1pq4sswfuonbh.cloudfront.net
-PAIAdminStack.AdminApiEndpoint = https://3bf81smt2f.execute-api.ap-northeast-2.amazonaws.com/prod/
-PAIInviteStack.InviteApiEndpoint = https://fa0xzwjcme.execute-api.ap-northeast-2.amazonaws.com/prod/
+PAIDataStack.BucketName       = pai-raw-data-YOUR_ACCOUNT_ID
+PAIDataStack.UserPoolId       = ap-northeast-2_XXXXXXXXX
+PAIDataStack.UserPoolClientId = XXXXXXXXXXXXXXXXXXXXXXXXXX
+PAIDataStack.IdentityPoolId   = ap-northeast-2:00000000-0000-0000-0000-000000000000
+PAIAdminStack.AdminConsoleURL = https://XXXXXXXXXXXX.cloudfront.net
+PAIAdminStack.AdminApiEndpoint = https://XXXXXXXXXX.execute-api.ap-northeast-2.amazonaws.com/prod/
+PAIInviteStack.InviteApiEndpoint = https://XXXXXXXXXX.execute-api.ap-northeast-2.amazonaws.com/prod/
 ```
 
 ### 2. Configure Android App
@@ -185,12 +185,12 @@ Paste CDK output values into [AwsConfig.kt](app/src/main/java/com/amazon/paidata
 
 ```kotlin
 object AwsConfig {
-    const val REGION              = "ap-northeast-2"
-    const val BUCKET_NAME         = "pai-raw-data-428925521485"
-    const val USER_POOL_ID        = "ap-northeast-2_MLxeZLXyY"
-    const val USER_POOL_CLIENT    = "64d10g6v0d1au6dho0vli0108e"
-    const val IDENTITY_POOL_ID    = "ap-northeast-2:82d41af6-..."
-    const val INVITE_API_ENDPOINT = "https://fa0xzwjcme.execute-api.ap-northeast-2.amazonaws.com/prod/"
+    const val REGION              = "ap-northeast-2"                      // CDK output: Region
+    const val BUCKET_NAME         = "pai-raw-data-YOUR_ACCOUNT_ID"        // CDK output: BucketName
+    const val USER_POOL_ID        = "ap-northeast-2_XXXXXXXXX"            // CDK output: UserPoolId
+    const val USER_POOL_CLIENT    = "XXXXXXXXXXXXXXXXXXXXXXXXXX"           // CDK output: UserPoolClientId
+    const val IDENTITY_POOL_ID    = "ap-northeast-2:00000000-0000-..."    // CDK output: IdentityPoolId
+    const val INVITE_API_ENDPOINT = "https://XXXXXXXXXX.execute-api.ap-northeast-2.amazonaws.com/prod/"  // CDK output: PAIInviteStack.InviteApiEndpoint
 }
 ```
 

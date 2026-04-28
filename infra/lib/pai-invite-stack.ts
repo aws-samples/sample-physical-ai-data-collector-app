@@ -42,7 +42,7 @@ export class PAIInviteStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(15),
       environment: {
         APP_USER_POOL_ID: props.appUserPoolId,
-        SES_FROM_EMAIL:   props.sesFromEmail ?? 'byochong@amazon.com',
+        SES_FROM_EMAIL:   props.sesFromEmail ?? 'noreply@example.com',
         SES_REGION:       this.region,
       },
     });
@@ -57,7 +57,9 @@ export class PAIInviteStack extends cdk.Stack {
     }));
     registerUserFn.addToRolePolicy(new iam.PolicyStatement({
       actions: ['ses:SendEmail'],
-      resources: ['*'],
+      resources: [
+        `arn:aws:ses:${this.region}:${this.account}:identity/*`,
+      ],
     }));
 
     const validateFn = new lambda.Function(this, 'ValidateInviteFn', {
