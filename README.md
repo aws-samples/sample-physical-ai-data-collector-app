@@ -207,7 +207,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ### 4. Create QR Invite and Register
 
-1. Open Admin Console: `https://d1pq4sswfuonbh.cloudfront.net`
+1. Open Admin Console: `https://XXXXXXXXXXXX.cloudfront.net` (see CDK output: `PAIAdminStack.AdminConsoleURL`)
 2. Log in with admin credentials (see [Admin Console](#admin-console) below)
 3. Go to **Create QR** → fill in workspace name, max uses, time window
 4. Download the QR code image
@@ -264,16 +264,16 @@ A web-based viewer for browsing uploaded captures, playing back video, and inspe
 
 | Item | Value |
 |------|-------|
-| Viewer URL | `https://d2gup9k4vdzl3b.cloudfront.net` |
-| Viewer API | `https://cn1u8vyvj7.execute-api.ap-northeast-2.amazonaws.com/prod/` |
-| Cognito Login URL | `https://pai-viewer-428925521485.auth.ap-northeast-2.amazoncognito.com/login?client_id=ik3b7lav78qs7k19rjge60chc&response_type=code&scope=openid+email+profile&redirect_uri=https://d2gup9k4vdzl3b.cloudfront.net` |
-| Viewer Client ID | `ik3b7lav78qs7k19rjge60chc` |
+| Viewer URL | CDK output: `PAIDataStack.ViewerUrl` |
+| Viewer API | CDK output: `PAIViewerStack.ViewerApiEndpoint` |
+| Cognito Login URL | `https://pai-viewer-YOUR_ACCOUNT_ID.auth.ap-northeast-2.amazoncognito.com/login?client_id=YOUR_CLIENT_ID&response_type=code&scope=openid+email+profile&redirect_uri=YOUR_VIEWER_URL` |
+| Viewer Client ID | CDK output: `PAIDataStack.UserPoolClientId` |
 
 ### Login
 
 The viewer uses the **App User Pool** (same credentials as the Android app). Log in with the Cognito Hosted UI:
 
-1. Go to the Viewer URL: `https://d2gup9k4vdzl3b.cloudfront.net`
+1. Go to the Viewer URL (see CDK output: `PAIDataStack.ViewerUrl`)
 2. You will be redirected to the Cognito Hosted UI login page
 3. Enter the email and password used when registering via QR code in the Android app
 4. After login you are redirected back to the viewer
@@ -332,7 +332,7 @@ npx cdk deploy PAIDataStack   # re-uploads viewer/src and triggers CodeBuild aut
 
 ## Admin Console
 
-URL: `https://d1pq4sswfuonbh.cloudfront.net`
+URL: see CDK output `PAIAdminStack.AdminConsoleURL`
 
 ### Login
 
@@ -340,7 +340,9 @@ The admin password is stored in AWS Secrets Manager:
 
 ```bash
 aws secretsmanager get-secret-value \
-  --secret-id arn:aws:secretsmanager:ap-northeast-2:428925521485:secret:pai-admin-password-428925521485-KPtlHf \
+  --secret-id $(aws cloudformation describe-stacks --stack-name PAIAdminStack \
+    --query "Stacks[0].Outputs[?OutputKey=='AdminPasswordArn'].OutputValue" \
+    --output text) \
   --region ap-northeast-2 \
   --query SecretString --output text
 ```
@@ -421,10 +423,10 @@ I MainActivity: ✓ Upload completed successfully
 
 ```bash
 # List uploaded videos
-aws s3 ls s3://pai-raw-data-428925521485/video/ --recursive --human-readable --region ap-northeast-2
+aws s3 ls s3://pai-raw-data-YOUR_ACCOUNT_ID/video/ --recursive --human-readable --region ap-northeast-2
 
 # List uploaded data zips
-aws s3 ls s3://pai-raw-data-428925521485/data/ --recursive --human-readable --region ap-northeast-2
+aws s3 ls s3://pai-raw-data-YOUR_ACCOUNT_ID/data/ --recursive --human-readable --region ap-northeast-2
 
 # Check DynamoDB capture index
 aws dynamodb scan --table-name pai-capture-index-1 \

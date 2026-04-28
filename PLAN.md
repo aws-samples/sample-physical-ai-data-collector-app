@@ -1,7 +1,7 @@
 # Project Plan: Android PAI Data Ingestion App
 
 > Last updated: 2026-04-18
-> Authors: Andrew Chong (byochong@amazon.com), Hubert Asamer (asamerh@amazon.de)
+> Authors: AWS Contributors
 
 ---
 
@@ -87,10 +87,7 @@ to complete the end-to-end PAI pipeline demonstration.
 | Android Workspace Manager | ✅ | WorkspaceConfig, WorkspaceManager, QRScanActivity, WorkspaceListActivity |
 | Email 인증 플로우 | ✅ | `requireEmailVerification` 지원, confirmSignUp dialog |
 
-**Deployed endpoints:**
-- Admin Console: `https://d1pq4sswfuonbh.cloudfront.net`
-- Admin API: `https://3bf81smt2f.execute-api.ap-northeast-2.amazonaws.com/prod/`
-- Invite API: `https://fa0xzwjcme.execute-api.ap-northeast-2.amazonaws.com/prod/`
+**Deployed endpoints:** See CDK stack outputs after running `cdk deploy --all`.
 
 ---
 
