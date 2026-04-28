@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000">
+
+    <!-- Camera preview -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#CC000000">
+
+        <!-- Workspace info bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvWorkspace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#AAFFFFFF"
+                android:textSize="12sp"
+                android:text="Workspace: —" />
+
+            <Button
+                android:id="@+id/btnWorkspace"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="🗂"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:backgroundTint="#444444" />
+        </LinearLayout>
+
+        <!-- User info bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="Logged in as: username" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Logout"
+                android:textSize="12sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:backgroundTint="#666666" />
+        </LinearLayout>
+
+        <!-- Segment info -->
+        <TextView
+            android:id="@+id/tvSegmentInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#AAFFFFFF"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Scenario spinner -->
+        <Spinner
+            android:id="@+id/spinnerScenario"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="#FFFFFF"
+            android:popupBackground="#222222" />
+
+        <!-- Location -->
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:hint="Location (e.g., Warehouse A Line 1)"
+            android:textColorHint="#888"
+            android:textColor="#FFF"
+            android:backgroundTint="#555" />
+
+        <!-- Task type -->
+        <EditText
+            android:id="@+id/etTaskType"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:hint="Task type (e.g., welding, assembly, transport)"
+            android:textColorHint="#888"
+            android:textColor="#FFF"
+            android:backgroundTint="#555" />
+
+        <!-- Record + Settings buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/btnRecord"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="⏺ Record"
+                android:textSize="18sp"
+                android:backgroundTint="#FF3B30" />
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:text="⚙"
+                android:textSize="20sp"
+                android:backgroundTint="#444444" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

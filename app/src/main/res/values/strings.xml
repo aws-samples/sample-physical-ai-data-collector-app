@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PAI Data Collector</string>
+    <string-array name="scenarios">
+        <item>logistics</item>
+        <item>assembly</item>
+        <item>welding</item>
+        <item>autonomous</item>
+        <item>inspection</item>
+        <item>other</item>
+    </string-array>
+</resources>

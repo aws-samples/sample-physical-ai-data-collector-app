@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#111">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto-split Interval"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerInterval"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="#FFFFFF"
+        android:popupBackground="#222222" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Idle Detection"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="4dp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchSkipIdle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skip idle segments (no motion for 5 sec)"
+        android:textColor="#CCFFFFFF"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btnSaveSettings"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:text="Save"
+        android:textSize="16sp"
+        android:backgroundTint="#0A84FF" />
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+{
+  "name": "pai-infra",
+  "version": "1.0.0",
+  "scripts": { "build": "tsc", "deploy": "cdk deploy" },
+  "dependencies": {
+    "aws-cdk-lib": "^2.130.0",
+    "constructs": "^10.0.0"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.130.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}

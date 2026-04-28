@@ -1,0 +1,14 @@
+.gradle/
+.idea/
+build/
+*.class
+local.properties
+
+# Node
+node_modules/
+infra/cdk.out/
+package-lock.json
+.env.local
+
+# Admin web build artifacts
+infra/admin/dist/
