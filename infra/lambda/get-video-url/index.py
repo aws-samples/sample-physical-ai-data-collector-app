@@ -1,9 +1,9 @@
 import json
 import os
 import boto3
+from botocore.config import Config as BotocoreConfig
 from urllib.parse import unquote
 
-s3_client = boto3.client('s3')
 BUCKET_NAME = os.environ['BUCKET_NAME']
 ALLOWED_ORIGIN = os.environ.get('ALLOWED_ORIGIN', '*')
 
@@ -26,6 +26,15 @@ def get_user_sub(event):
 
 def handler(event, context):
     """Generate presigned URL for video file - validates user ownership"""
+    # Create a fresh S3 client on each invocation with an explicit regional
+    # endpoint and SigV4 — required for non-us-east-1 buckets and presigned URLs.
+    region = os.environ.get("AWS_REGION", "eu-central-1")
+    s3_client = boto3.client(
+        "s3",
+        region_name=region,
+        endpoint_url=f"https://s3.{region}.amazonaws.com",
+        config=BotocoreConfig(signature_version="s3v4"),
+    )
     cors_origin = get_cors_origin(event)
     try:
         # Get authenticated user's Cognito sub

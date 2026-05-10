@@ -12,3 +12,5 @@ package-lock.json
 
 # Admin web build artifacts
 infra/admin/dist/
+AwsConfig.kt.temp
+
